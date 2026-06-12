@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Catálogo Multimídia</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <h1 class="brand">Catálogo Multimídia</h1>
+    <nav aria-label="Navegação principal">
+      <button id="btn-new-media" class="btn">Cadastrar obra</button>
+      <button id="btn-my-lists" class="btn">Minhas listas</button>
+      <input id="search" type="search" placeholder="Buscar título, tag ou autor" aria-label="Buscar obras" />
+      <select id="filter-category" aria-label="Filtrar por categoria">
+        <option value="">Todas categorias</option>
+        <option value="filme">Filme</option>
+        <option value="serie">Série</option>
+        <option value="anime">Anime</option>
+        <option value="jogo">Jogo</option>
+        <option value="livro">Livro</option>
+      </select>
+    </nav>
+  </header>
+
+  <main id="main" role="main">
+    <section id="media-list" aria-live="polite">
+      <!-- Cards de mídia serão inseridos aqui -->
+    </section>
+
+    <aside id="sidebar" aria-label="Painel lateral">
+      <section id="recommendations" aria-labelledby="rec-title">
+        <h2 id="rec-title">Sugestões para você</h2>
+        <ul id="rec-list"></ul>
+      </section>
+
+      <section id="quick-actions" aria-labelledby="qa-title">
+        <h2 id="qa-title">Ações rápidas</h2>
+        <button id="btn-random" class="btn">Sugerir aleatório</button>
+        <button id="btn-clear" class="btn danger">Limpar dados (local)</button>
+      </section>
+    </aside>
+  </main>
+
+  <!-- Modal formulário cadastro / edição -->
+  <div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <button id="modal-close" class="modal-close" aria-label="Fechar">×</button>
+      <h2 id="modal-title">Cadastrar obra</h2>
+      <form id="media-form">
+        <label>
+          Título
+          <input name="title" required />
+        </label>
+        <label>
+          Categoria
+          <select name="category" required>
+            <option value="filme">Filme</option>
+            <option value="serie">Série</option>
+            <option value="anime">Anime</option>
+            <option value="jogo">Jogo</option>
+            <option value="livro">Livro</option>
+          </select>
+        </label>
+        <label>
+          Descrição
+          <textarea name="description" rows="3"></textarea>
+        </label>
+        <label>
+          Imagem URL
+          <input name="image" type="url" placeholder="https://..." />
+        </label>
+        <label>
+          Tags (separadas por vírgula)
+          <input name="tags" placeholder="ação, fantasia, drama" />
+        </label>
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Salvar</button>
+          <button type="button" id="btn-cancel" class="btn">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <template id="media-card-template">
+    <article class="media-card" tabindex="0">
+      <img class="media-img" alt="" />
+      <div class="media-body">
+        <h3 class="media-title"></h3>
+        <p class="media-meta"></p>
+        <p class="media-desc"></p>
+        <div class="media-tags" aria-hidden="true"></div>
+        <div class="media-actions">
+          <label class="rating">
+            Nota
+            <select class="rating-select" aria-label="Avaliar obra">
+              <option value="">—</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </label>
+          <button class="btn small btn-comment">Comentar</button>
+          <button class="btn small btn-add-list">Adicionar à lista</button>
+          <button class="btn small btn-edit">Editar</button>
+          <button class="btn small btn-delete danger">Excluir</button>
+        </div>
+        <div class="comments" aria-live="polite"></div>
+      </div>
+    </article>
+  </template>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -191,6 +191,15 @@ body {
   padding-top: 16px;
 }
 
+/* Componentes de Entrada */
+.md3-select-input { width: 100%; padding: 16px; background: var(--md-sys-color-surface); border: 1px solid var(--md-sys-color-outline); border-radius: var(--md-shape-medium); color: var(--md-sys-color-on-surface); outline: none; }
+.md3-text-field { position: relative; width: 100%; margin-bottom: 12px; }
+.md3-text-field input { width: 93%; padding: 16px; background: transparent; border: 1px solid var(--md-sys-color-outline); border-radius: var(--md-shape-medium); color: var(--md-sys-color-on-surface); outline: none; }
+.md3-text-field label { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); transition: 0.2s all; pointer-events: none; color: var(--md-sys-color-on-surface-variant); }
+.md3-text-field input:focus ~ label, .md3-text-field input:not(:placeholder-shown) ~ label { top: 0; font-size: 12px; background: var(--md-sys-color-surface-container); padding: 0 4px; color: var(--md-sys-color-primary); }
+
+.md3-progress-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--md-sys-color-surface-variant); }
+.md3-inline-input { background: var(--md-sys-color-surface); border: 1px solid var(--md-sys-color-outline); color: var(--md-sys-color-on-surface); padding: 6px; border-radius: 6px; font-size: 12px; width: 100%; }
 /* Inputs */
 .md3-text-field {
   position: relative;

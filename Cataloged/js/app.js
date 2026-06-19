@@ -703,7 +703,7 @@ function formatMediaMetadata(media) {
 
 function getMediaSummary(media) {
   const metadata = getMediaMetadata(media);
-
+  
   switch (media.type) {
     case "filmes":
       return `Diretor: ${metadata.director || "—"} • ${metadata.duration || "—"}`;
@@ -711,7 +711,7 @@ function getMediaSummary(media) {
     case "livros":
       return `Autor: ${metadata.author || "—"} • ${metadata.pages || "—"} páginas`;
 
-    case "musicas":
+    case "musicas": 
       return `Artista: ${metadata.artist || "—"} • Álbum: ${metadata.album || "—"}`;
 
       case "jogos":

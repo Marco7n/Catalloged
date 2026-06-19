@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MediaNexus - Catálogo Multimídia MD3</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="md3-dark">
+
+  <header class="md3-app-bar">
+    <div class="md3-app-bar-container">
+      <div class="md3-brand">
+        <span class="material-symbols-outlined brand-icon">dynamic_feed</span>
+        <h1 class="md3-title">MediaNexus</h1>
+      </div>
+
+      <nav class="md3-navigation-tabs">
+        <a href="#/" class="md3-tab-link active" data-route="all">Tudo</a>
+        <a href="#/filmes" class="md3-tab-link" data-route="filmes">Filmes</a>
+        <a href="#/musicas" class="md3-tab-link" data-route="musicas">Músicas</a>
+        <a href="#/livros" class="md3-tab-link" data-route="livros">Livros</a>
+        <a href="#/jogos" class="md3-tab-link" data-route="jogos">Jogos</a>
+        <button id="btn-open-create-media" class="md3-btn md3-btn-text hidden" style="margin-left: auto;">
+          <span class="material-symbols-outlined">add_circle</span> Criar Mídia
+        </button>
+      </nav>
+
+      <div class="md3-app-bar-actions" id="auth-widget-container"></div>
+    </div>
+  </header>
+
+  <main class="md3-main-layout">
+    <div id="error-banner" class="md3-error-banner hidden">
+      <span class="material-symbols-outlined">error</span>
+      <span id="error-message-text">Erro ao sincronizar dados com o servidor API Remoto.</span>
+      <button id="btn-retry-fetch" class="md3-btn md3-btn-text">Tentar Novamente</button>
+    </div>
+
+    <section id="profile-view" class="md3-profile-section hidden"></section>
+
+    <section class="md3-catalog-container">
+      <div class="md3-section-header">
+        <h2 id="catalog-title" class="md3-headline">Feed Global de Mídias</h2>
+        <div id="query-status-indicator" class="md3-loading-indicator">Sincronizado</div>
+      </div>
+      <div id="global-catalog-grid" class="md3-cards-grid"></div>
+    </section>
+  </main>
+
+  <div id="create-media-modal" class="md3-dialog-overlay hidden">
+    <div class="md3-dialog" style="max-width: 500px;">
+      <h3 class="md3-dialog-title">Adicionar ao Feed Global (JSON Cloud)</h3>
+      <form id="create-media-form" class="md3-form">
+        <div class="md3-text-field">
+          <input type="text" id="media-title" required placeholder=" " />
+          <label for="media-title">Título</label>
+        </div>
+        <div class="md3-text-field">
+          <input type="url" id="media-poster" required placeholder=" " />
+          <label for="media-poster">URL da Imagem</label>
+        </div>
+        <div class="md3-text-field">
+          <select id="media-type-select" required class="md3-select-input">
+            <option value="" disabled selected>Selecione o Tipo</option>
+            <option value="filmes">Filme</option>
+            <option value="musicas">Música</option>
+            <option value="livros">Livro</option>
+            <option value="jogos">Jogo</option>
+          </select>
+        </div>
+        
+        <div id="dynamic-fields-container" class="md3-form-group"></div>
+
+        <div class="md3-dialog-actions">
+          <button type="button" id="btn-close-create" class="md3-btn md3-btn-text">Cancelar</button>
+          <button type="submit" class="md3-btn md3-btn-filled">Publicar no Feed</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="auth-modal" class="md3-dialog-overlay hidden">
+    <div class="md3-dialog">
+      <h3 class="md3-dialog-title">Acessar Conta (Multi-dispositivo)</h3>
+      <p class="md3-dialog-support-text">Introduza o seu e-mail de utilizador para carregar a sua coleção a partir da nuvem.</p>
+      <form id="auth-form" class="md3-form">
+        <div class="md3-text-field">
+          <input type="email" id="auth-email" required placeholder=" " />
+          <label for="auth-email">E-mail</label>
+        </div>
+        <div class="md3-dialog-actions">
+          <button type="button" id="btn-close-auth" class="md3-btn md3-btn-text">Cancelar</button>
+          <button type="submit" class="md3-btn md3-btn-filled">Entrar / Criar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

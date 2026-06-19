@@ -514,9 +514,9 @@ class App {
         { id: "meta-pages", label: "Páginas", key: "pages" }
       ],
       jogos: [
-        { id: "meta-developer", label: "Desenvolvedora", key: "developer" },
+        { id: "meta-genre", label: "Gênero (Ex: RPG, Terror, etc)", key: "genre" },
         { id: "meta-time", label: "Tempo estimado", key: "time" }
-      ]
+      ]      
     };
 
     const selectedFields = fields[type] || [];
@@ -637,11 +637,11 @@ function getMediaMetadata(media) {
         pages: media.pages
       };
 
-    case "jogos":
-      return {
-        developer: media.developer,
-        time: media.time
-      };
+      case 'jogos':
+        return {
+          genre: media.genre, // novo campo
+          time: media.time
+        };
 
     default:
       return {};
@@ -650,15 +650,16 @@ function getMediaMetadata(media) {
 
 function formatMetadataLabel(key) {
   const map = {
-    director: "Diretor",
-    duration: "Duração",
-    artist: "Artista",
-    album: "Álbum",
-    author: "Autor",
-    pages: "Páginas",
-    developer: "Desenvolvedora",
-    time: "Tempo estimado"
-  };
+  director: "Diretor",
+  duration: "Duração",
+  artist: "Artista",
+  album: "Álbum",
+  author: "Autor",
+  pages: "Páginas",
+  developer: "Desenvolvedora",
+  time: "Tempo estimado",
+  genre: "Gênero" // novo
+};
 
   return map[key] || key;
 }
@@ -713,8 +714,8 @@ function getMediaSummary(media) {
     case "musicas":
       return `Artista: ${metadata.artist || "—"} • Álbum: ${metadata.album || "—"}`;
 
-    case "jogos":
-      return `Dev: ${metadata.developer || "—"} • ${metadata.time || "—"}`;
+      case "jogos":
+        return `Gênero: ${metadata.genre || "—"} • ${metadata.time || "—"}`;      
 
     default:
       return "Sem informações";
